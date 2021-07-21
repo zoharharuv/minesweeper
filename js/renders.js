@@ -8,9 +8,9 @@ function renderBoard(board) {
             // basic class name
             var className = 'cell cell' + i + '-' + j;
             // if not clicked any cells show a CLEAN board
-            if (!gGame.isOn && gGame.shownCount < 1) {
+            if (!gGame.isOn && gGame.shownCount === 0) {
                 currCell = CLEAN;
-                strHTML += `<td class="${className}" oncontextmenu="cellMarked(${i},${j})" 
+                strHTML += `<td class="${className}" oncontextmenu="cellMarked(this,${i},${j})" 
                 onclick="cellClicked(this,${i},${j})">${currCell}</td>`;
                 continue;
             }
@@ -97,6 +97,7 @@ function resetGame() {
     document.querySelector('.score').innerHTML = '&zwnj;';
     document.querySelector('.flags').innerText = 'Good luck!';
     document.querySelector('.lives').innerHTML = '&zwnj;';
+    document.querySelector('.smile').innerHTML = '😄';
 }
 
 // different colors switch case for CSS

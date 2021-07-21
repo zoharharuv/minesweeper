@@ -135,10 +135,12 @@ function cellClicked(elCell, i, j) {
                 // 
             } else {
                 renderStats();
-                renderCell({ i, j }, MINE)
+                renderCell({ i, j }, MINE);
+                document.querySelector('.smile').innerHTML = '😢';
                 setTimeout(() => {
-                    if(gGame.LIVES !== 0){
-                        renderCell({ i, j }, CLEAN)
+                    if (gGame.LIVES !== 0) {
+                        document.querySelector('.smile').innerHTML = '😄';
+                        renderCell({ i, j }, CLEAN);
                     }
                 }, 1000);
             }
@@ -158,7 +160,9 @@ function cellMarked(elCell, i, j) {
             console.log('current mines cords', gMinesCords);
         }
         var currCell = gBoard[i][j];
-        if (currCell.isShown && !currCell.isMarked) return;
+        if (currCell.isShown) {
+            return;
+        } 
         if (gGame.markedCount < gLevel.MINES && !currCell.isMarked) {
             currCell.isMarked = true;
             gGame.markedCount++;
@@ -200,6 +204,7 @@ function isGameOver(isOnMine) {
         document.querySelector('.score').innerText = 'YOU LOST!';
         document.querySelector('.flags').innerText = 'Click a level to try again';
         document.querySelector('.lives').innerHTML = '&zwnj;';
+        document.querySelector('.smile').innerHTML = '🤯';
         updateGameEnd();
         var lastCell = document.querySelector('.cell' + gLastCell.i + '-' + gLastCell.j);
         lastCell.style.background = 'red';
@@ -209,6 +214,7 @@ function isGameOver(isOnMine) {
     if ((gGame.shownCount + gGame.markedCount) === gGame.winCount) {
         document.querySelector('.score').innerText = 'YOU WON!';
         document.querySelector('.flags').innerText = 'Click a level to restart';
+        document.querySelector('.smile').innerHTML = '😎';
         updateGameEnd();
         return;
     }
@@ -234,6 +240,11 @@ function setLevel(elBtn) {
             gGame.winCount = gLevel.SIZE ** 2
             break;
     }
+    forceReset();
+}
+
+// for smile
+function forceReset() {
     resetGame();
     initGame();
 }
