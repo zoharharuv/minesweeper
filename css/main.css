@@ -1,0 +1,94 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: antiquewhite;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    background: cornsilk;
+}
+
+.stats {
+    margin-bottom: 0;
+}
+
+.board {
+    display: inline-block;
+    width: 100%;
+}
+
+.board table {
+    background: #c0c0c0;
+    border: 4px solid black;
+    border-top-color: #fff;
+    border-left-color: #fff;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.cell {
+    display: inline-block;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    width: 2em;
+    height: 2em;
+    margin: 0;
+    outline: none;
+    background-size: 500%;
+    cursor: pointer;
+}
+
+td.cell:hover{
+    background: #e2e0e0;
+}
+
+.shown {
+    background: #8b8b8b;
+}
+
+/* classes for numbers */
+
+.one {
+    color: blue;
+}
+
+.two {
+    color: green;
+}
+
+.three {
+    color: red;
+}
+
+.four {
+    color: purple;
+}
+
+.five {
+    color: brown;
+}
+
+.six {
+    color: turquoise;
+}
+
+.seven {
+    color: black;
+}
+
+.eight {
+    color: lightgray;
+}
