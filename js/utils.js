@@ -1,10 +1,41 @@
-function getSelector(coord) {
-  return '#cell-' + coord.i + '-' + coord.j
+// returns all positions of mines arround called position
+function getAllNegs(pos) {
+  var negs = [];
+  for (var i = pos.i - 1; i <= pos.i + 1 && i < gLevel.SIZE; i++) {
+    if (i < 0) continue;
+    for (var j = pos.j - 1; j <= pos.j + 1 && j < gLevel.SIZE; j++) {
+      if (j < 0 || (i === pos.i && j === pos.j)) continue;
+      if (gBoard[i][j].isMine) {
+        negs.push({ i, j });
+      }
+    }
+  }
+  return negs;
 }
 
-function isEmptyCell(coord) {
-  return gBoard[coord.i][coord.j] === ''
+// shows all negs if hinted and then hides them
+function getAllNegsHinted(pos) {
+  var negs = [];
+  for (var i = pos.i - 1; i <= pos.i + 1 && i < gLevel.SIZE; i++) {
+    if (i < 0) continue;
+    for (var j = pos.j - 1; j <= pos.j + 1 && j < gLevel.SIZE; j++) {
+      if (j < 0) continue;
+      if (gBoard[i][j].isMarked || gBoard[i][j].isShown) { continue; }
+      negs.push({ i, j });
+      gBoard[i][j].isShown = true;
+    }
+  }
+  return negs;
 }
+
+function hideAllNegsHinted(negs) {
+  for (var i = 0; i < negs.length; i++) {
+    currPos = negs[i];
+    currCell = gBoard[currPos.i][currPos.j];
+    currCell.isShown = false;
+  }
+}
+
 
 
 // TIMER START
@@ -33,4 +64,29 @@ function getRandomIntegerInclusive(min, max) {
 // random number NOT inclusive max
 function getRandomInteger(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
+}
+
+// different colors switch case for CSS
+function numberColor(num) {
+  switch (num) {
+    case 0:
+      return null;
+    case 1:
+      return 'one';
+    case 2:
+      return 'two';
+    case 3:
+      return 'three';
+    case 4:
+      return 'four';
+    case 5:
+      return 'five';
+    case 6:
+      return 'six';
+    case 7:
+      return 'seven';
+    case 8:
+      return 'eight';
+    default: return null;
+  }
 }
