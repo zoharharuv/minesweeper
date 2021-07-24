@@ -180,13 +180,15 @@ function isGameOver(isOnMine) {
 
 // change the highscore in LOCALSTORAGE
 function setHighscore(score) {
-    var prevHighScore = localStorage.getItem(gLevelName);
-    var newHighScore = score / 1000;
-    if (localStorage.getItem(gLevelName) === null
-        || newHighScore < prevHighScore) {
-        localStorage.setItem(gLevelName, newHighScore);
-        var elHighScore = document.querySelector('.highscore');
-        elHighScore.innerText = 'Current Highscore: ' + newHighScore + ' seconds!';
+    if (!gIsPlacedMines) {
+        var prevHighScore = localStorage.getItem(gLevelName);
+        var newHighScore = score / 1000;
+        if (localStorage.getItem(gLevelName) === null
+            || newHighScore < prevHighScore) {
+            localStorage.setItem(gLevelName, newHighScore);
+            var elHighScore = document.querySelector('.highscore');
+            elHighScore.innerText = 'Current Highscore: ' + newHighScore + ' seconds!';
+        }
     }
 }
 
